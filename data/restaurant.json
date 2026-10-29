@@ -1,0 +1,54 @@
+{
+  "name": "La Cuisine de Dina",
+  "tagline": "Spécialités africaines",
+  "address": "35 rue Vivenel, 60200 Compiègne",
+  "phone": "09 54 61 73 70",
+  "phoneLink": "tel:+33954617370",
+  "orderUrl": "https://www.ubereats.com/fr/store/la-cuisine-de-dina-compiegne/29XhEqXIX8mxrMi63DDbRQ",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La+Cuisine+de+Dina+35+rue+Vivenel+60200+Compiegne",
+  "hours": [
+    { "days": "Lundi", "hours": "Fermé" },
+    { "days": "Mardi — samedi", "hours": "11 h – 14 h · 18 h – 23 h" },
+    { "days": "Dimanche", "hours": "18 h – 23 h" }
+  ],
+  "provenance": {
+    "source": "Informations transmises par le client ; sélection de tarifs Uber Eats relevés le 29 octobre 2026.",
+    "validated": false,
+    "notice": "Tarifs Uber Eats indicatifs. Les prix sur place peuvent différer. Carte et disponibilités à confirmer auprès du restaurant.",
+    "hoursNotice": "Horaires et téléphone à confirmer auprès du restaurant."
+  },
+  "categories": [
+    { "id": "entrees", "name": "Pour commencer", "subtitle": "Les entrées", "side": "recto", "items": [
+      { "id": "pastels", "name": "Pastels", "price": 8, "detail": "La portion" },
+      { "id": "fatayas", "name": "Fatayas", "price": 8, "detail": "La portion" },
+      { "id": "nems", "name": "Nems", "price": 8, "detail": "La portion" },
+      { "id": "ailes", "name": "Ailes de poulet", "price": 8, "detail": "La portion" }
+    ] },
+    { "id": "plats", "name": "Le goût du partage", "subtitle": "Les plats", "side": "recto", "items": [
+      { "id": "thiou", "name": "Thiou", "price": 17 },
+      { "id": "thieb", "name": "Thiéb bou guinar", "price": 17 },
+      { "id": "mafe", "name": "Mafé", "price": 17 },
+      { "id": "saka", "name": "Saka-saka poulet", "price": 17 },
+      { "id": "yassa", "name": "Yassa", "price": 17.5 }
+    ] },
+    { "id": "grillades", "name": "Place aux grillades", "subtitle": "Grillades & poisson", "side": "verso", "items": [
+      { "id": "demi-poulet", "name": "Demi-poulet", "price": 16 },
+      { "id": "brochettes-poulet", "name": "Brochettes de poulet", "price": 16.5 },
+      { "id": "brochettes-boeuf", "name": "Brochettes de bœuf", "price": 17.5 },
+      { "id": "daurade", "name": "Daurade", "price": 23 },
+      { "id": "dibi-poulet", "name": "Dibi poulet", "price": 17.5, "detail": "Format individuel" },
+      { "id": "dibi-agneau", "name": "Dibi agneau", "price": 26, "detail": "Format individuel" }
+    ] },
+    { "id": "partage", "name": "À plusieurs, c’est meilleur", "subtitle": "Les box à partager", "side": "recto", "items": [
+      { "id": "box-9", "name": "Box 9 pièces", "price": 15 },
+      { "id": "box-15", "name": "Box 15 pièces", "price": 21 },
+      { "id": "box-30", "name": "Box 30 pièces", "price": 38 }
+    ] },
+    { "id": "boissons", "name": "Une touche de fraîcheur", "subtitle": "Les boissons", "side": "verso", "items": [
+      { "id": "bissap-rouge", "name": "Bissap rouge", "price": 4 },
+      { "id": "bissap-blanc", "name": "Bissap blanc", "price": 4 },
+      { "id": "gingembre", "name": "Gingembre", "price": 4 },
+      { "id": "bouye", "name": "Bouye", "price": 4 }
+    ] }
+  ]
+}
