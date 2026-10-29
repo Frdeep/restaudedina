@@ -53,3 +53,17 @@ document.addEventListener('click',event=>{
  focusTarget.focus({preventScroll:true});
  if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);
 });
+
+const ribbon=document.querySelector('.marquee');
+if(ribbon){
+ const control=ribbon.querySelector('.marquee-control');let paused=false;
+ const syncRibbon=()=>{
+  ribbon.classList.toggle('is-ready',!reduced.matches);
+  ribbon.classList.toggle('is-paused',paused);
+  control.hidden=reduced.matches;
+  control.setAttribute('aria-pressed',String(paused));
+  control.setAttribute('aria-label',paused?'Reprendre le défilement du bandeau':'Mettre le bandeau en pause');
+ };
+ control.addEventListener('click',()=>{paused=!paused;syncRibbon();});
+ reduced.addEventListener('change',syncRibbon);syncRibbon();
+}

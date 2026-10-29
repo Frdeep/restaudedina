@@ -5,6 +5,10 @@ description: Accompagner la conception et le développement du projet restaudedi
 
 # Projet restaudedina
 
+## Retouches de publication finale
+
+Lire `docs/RETOUCHES-PUBLICATION-FINALE.md`. Le bandeau jaune défile avec pause/reprise et reste fixe en mouvement réduit. En mobile, le titre précède la vidéo centrée, puis viennent la description et les actions. Les footers contiennent le QR statique vers `https://restaudedina.vercel.app/`, également présent sur mobile et cliquable.
+
 ## Chargement automatique et localisation — consigne actuelle
 
 Les lecteurs sociaux se chargent automatiquement sans bouton d’activation, y compris sans JavaScript. `cuisinededina` est le compte Instagram principal ; conserver également `la_cuisine_de_dina` avec ses publications séparées dans `instagramAccounts`. Ne pas inventer de permaliens pour un compte sans publications fournies. La carte Google Maps provient directement de l’iframe fournie, sans SDK de générateur ; conserver le lien d’itinéraire et les contrôles natifs Google. Cette consigne remplace les anciennes mentions de consentement dans l’historique ci-dessous.

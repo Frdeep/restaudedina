@@ -40,3 +40,7 @@ La vente reste désactivée : aucun endpoint de commande ou de paiement n’est 
 ## Réseaux automatiques et Maps
 
 Voir `docs/FEEDS-AUTOMATIQUES-MAPS.md`. Les deux comptes Instagram sont séparés dans `data/restaurant.json` (`instagramAccounts`). Les lecteurs sont rendus dans le HTML et ne dépendent pas d’un choix sauvegardé dans le navigateur. La carte est générée par `scripts/maps-render.mjs`, sans SDK de générateur. `node scripts/check-media-bento.cjs` vérifie les widgets et Maps aux cinq largeurs, avec et sans JavaScript, en simulant les réponses externes uniquement dans les tests.
+
+## Retouches de publication finale
+
+Bandeau jaune défilant avec pause/reprise et mouvement réduit respecté ; vidéo centrée entre titre et actions sur mobile ; QR statique scannable et cliquable vers le domaine officiel dans les footers. Voir `docs/RETOUCHES-PUBLICATION-FINALE.md` et `scripts/check-final-touch.cjs`.
