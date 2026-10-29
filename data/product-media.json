@@ -1,0 +1,226 @@
+{
+  "yassa": {
+    "file": "studio-plats",
+    "crop": "studio-3-0",
+    "label": "Yassa — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "mafe": {
+    "file": "studio-plats",
+    "crop": "studio-3-1",
+    "label": "Mafé — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "thiou": {
+    "file": "studio-plats",
+    "crop": "studio-3-2",
+    "label": "Thiou — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "ailes": {
+    "file": "studio-plats",
+    "crop": "studio-3-3",
+    "label": "Ailes de poulet — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "chawarma-poulet": {
+    "file": "studio-plats",
+    "crop": "studio-3-4",
+    "label": "Chawarma poulet — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "chawarma-agneau": {
+    "file": "studio-plats",
+    "crop": "studio-3-5",
+    "label": "Chawarma agneau — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "dibi-agneau": {
+    "file": "studio-plats",
+    "crop": "studio-3-6",
+    "label": "Dibi agneau · 1 personne — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "dibi-poulet": {
+    "file": "studio-plats",
+    "crop": "studio-3-7",
+    "label": "Dibi poulet · 1 personne — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "cuisse-poulet": {
+    "file": "studio-plats",
+    "crop": "studio-3-8",
+    "label": "Cuisse de poulet — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "brochettes-poulet": {
+    "file": "studio-grillades",
+    "crop": "studio-3-0",
+    "label": "Brochettes de poulet — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "brochettes-boeuf": {
+    "file": "studio-grillades",
+    "crop": "studio-3-1",
+    "label": "Brochettes de bœuf — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "brochettes-agneau": {
+    "file": "studio-grillades",
+    "crop": "studio-3-2",
+    "label": "Brochettes d’agneau — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "brochettes-mixtes": {
+    "file": "studio-grillades",
+    "crop": "studio-3-3",
+    "label": "Brochettes mixtes — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "pastels": {
+    "file": "studio-grillades",
+    "crop": "studio-3-4",
+    "label": "Pastels — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "fatayas": {
+    "file": "studio-grillades",
+    "crop": "studio-3-5",
+    "label": "Fatayas — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "nems": {
+    "file": "studio-grillades",
+    "crop": "studio-3-6",
+    "label": "Nems — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "demi-poulet": {
+    "file": "studio-grillades",
+    "crop": "studio-3-7",
+    "label": "Demi-poulet braisé — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "bissap-blanc": {
+    "file": "studio-grillades",
+    "crop": "studio-3-8",
+    "label": "Bissap blanc — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "bissap-rouge": {
+    "file": "studio-boissons",
+    "crop": "studio-2-0",
+    "label": "Bissap rouge — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "gingembre": {
+    "file": "studio-boissons",
+    "crop": "studio-2-1",
+    "label": "Gingembre — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "bouye": {
+    "file": "studio-boissons",
+    "crop": "studio-2-2",
+    "label": "Bouye — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": true,
+    "source": "generation-studio-2026-10-29"
+  },
+  "sodas": {
+    "file": "studio-boissons",
+    "crop": "studio-2-3",
+    "label": "Exemple de soda de type cola, choix à confirmer — visuel illustratif recréé par IA, présentation non contractuelle",
+    "specific": false,
+    "source": "generation-studio-2026-10-29"
+  },
+  "thieb": {
+    "file": "six-assiettes",
+    "crop": "thieb",
+    "label": "Thiéb bou guinar, poulet, riz et légumes — visuel illustratif recréé par IA",
+    "specific": true,
+    "source": "studio-reference-client"
+  },
+  "saka": {
+    "file": "six-assiettes",
+    "crop": "saka",
+    "label": "Saka-saka poulet, riz et sauce aux feuilles — visuel illustratif recréé par IA",
+    "specific": true,
+    "source": "studio-reference-client"
+  },
+  "daurade": {
+    "file": "six-assiettes",
+    "crop": "poisson",
+    "label": "Daurade grillée — visuel illustratif recréé par IA",
+    "specific": true,
+    "source": "studio-reference-client"
+  },
+  "poulet-entier": {
+    "file": "poulet-braise",
+    "crop": "none",
+    "label": "Poulet entier braisé — visuel illustratif recréé par IA",
+    "specific": true,
+    "source": "studio-reference-client"
+  },
+  "dibi-agneau-2": {
+    "file": "studio-plats",
+    "crop": "studio-3-6",
+    "label": "Dibi agneau — illustration du plat ; quantité pour 2 personnes non représentée",
+    "specific": false,
+    "source": "generation-studio-2026-10-29"
+  },
+  "dibi-agneau-4": {
+    "file": "studio-plats",
+    "crop": "studio-3-6",
+    "label": "Dibi agneau — illustration du plat ; quantité pour 4 personnes non représentée",
+    "specific": false,
+    "source": "generation-studio-2026-10-29"
+  },
+  "dibi-poulet-2": {
+    "file": "studio-plats",
+    "crop": "studio-3-7",
+    "label": "Dibi poulet — illustration du plat ; quantité pour 2 personnes non représentée",
+    "specific": false,
+    "source": "generation-studio-2026-10-29"
+  },
+  "box-9": {
+    "file": "entrees",
+    "crop": "none",
+    "label": "Assortiment illustratif d’entrées — composition et 9 pièces non représentées exactement",
+    "specific": false,
+    "source": "studio-reference-client"
+  },
+  "box-15": {
+    "file": "entrees",
+    "crop": "none",
+    "label": "Assortiment illustratif d’entrées — composition et 15 pièces non représentées exactement",
+    "specific": false,
+    "source": "studio-reference-client"
+  },
+  "box-30": {
+    "file": "entrees",
+    "crop": "none",
+    "label": "Assortiment illustratif d’entrées — composition et 30 pièces non représentées exactement",
+    "specific": false,
+    "source": "studio-reference-client"
+  }
+}

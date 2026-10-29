@@ -26,10 +26,19 @@ const fs=require('node:fs/promises');
   await page.reload({waitUntil:'networkidle'});assert.ok((await page.locator('.checkout-card [data-cart-total]').textContent()).includes('51,00'));await page.getByRole('button',{name:'Retirer Thiéb bou guinar',exact:true}).click();assert.equal(await page.locator('.cart-empty-card').isVisible(),true);await page.locator('.cart-page-grid [data-cart-undo] button').click();assert.ok((await page.locator('.checkout-card [data-cart-total]').textContent()).includes('51,00'));await page.screenshot({path:'artifacts/v2/panier-desktop.png',fullPage:true});
   await page.goto(base+'/produit-demi-poulet.html',{waitUntil:'networkidle'});await page.locator('[name=side-0]').selectOption('Riz blanc');await page.locator('[name=sauce-0]').selectOption('Blanche');await page.getByRole('button',{name:'Ajouter au panier',exact:true}).click();await page.locator('#cart-dialog').waitFor({state:'visible'});assert.ok((await page.locator('#cart-dialog').textContent()).includes('Riz blanc · Blanche'));await page.keyboard.press('Escape');assert.equal(await page.locator('#cart-dialog').isVisible(),false);
   await page.goto(base,{waitUntil:'networkidle'});await page.locator('[data-legal=mentions]').first().click();await page.locator('#legal-mentions').waitFor({state:'visible'});assert.ok((await page.locator('#legal-mentions').textContent()).includes('DINA’S FOOD'));await page.keyboard.press('Escape');assert.equal(await page.locator('#legal-mentions').isVisible(),false);assert.equal(await page.locator('[data-legal=mentions]').first().evaluate(el=>el===document.activeElement),true);
-  await page.locator('[data-social-load=instagram]').click();await page.waitForFunction(()=>document.querySelector('[data-social-slot=instagram] iframe')?.contentWindow);await page.waitForTimeout(100);assert.ok(await page.locator('[data-social-slot=instagram] iframe').getAttribute('src').then(s=>s.includes('Cu_9HepI3N5/embed/')));
-  await page.getByRole('button',{name:'Publication Instagram suivante',exact:true}).click();assert.ok((await page.locator('[data-social-slot=instagram] iframe').getAttribute('src')).includes('Cuc2b7iIV3K/embed/'));
+  await page.locator('[data-social-load=instagram]').click();
+  assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
+  for(const [index,id] of ['Cu_9HepI3N5','Cuc2b7iIV3K','CuQHV9zodWB'].entries()){
+   const frame=page.locator('[data-social-slot=instagram] iframe').nth(index);
+   assert.ok((await frame.getAttribute('src')).includes(id+'/embed/'));
+   assert.equal(await frame.getAttribute('referrerpolicy'),'strict-origin-when-cross-origin');
+  }
+  await page.locator('[data-social-retry=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
+  await page.locator('[data-social-slot=instagram]').screenshot({path:'artifacts/v2/social-bento-routing-test.png'});
   await page.locator('[data-social-load=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),0);
-  await page.locator('[data-social-load=facebook]').click();assert.ok((await page.locator('[data-social-slot=facebook] iframe').getAttribute('src')).includes('plugins/page.php'));await page.locator('[data-social-load=facebook]').click();assert.equal(await page.locator('iframe').count(),0);
+  await page.locator('[data-social-load=facebook]').click();const fbSrc=new URL(await page.locator('[data-social-slot=facebook] iframe').getAttribute('src'));assert.equal(fbSrc.pathname,'/plugins/page.php');assert.equal(fbSrc.searchParams.get('href'),'https://www.facebook.com/100060362415980/');assert.equal(fbSrc.searchParams.get('tabs'),'timeline');await page.locator('[data-social-load=facebook]').click();assert.equal(await page.locator('iframe').count(),0);
+  await page.locator('.header nav a[href="#venir"]').click();assert.equal(new URL(page.url()).hash,'');assert.equal(await page.locator('#visit-title').evaluate(el=>el===document.activeElement),true);
+  await page.goto(base+'/#venir',{waitUntil:'networkidle'});await page.locator('.header nav a[href="#carte"]').click();assert.equal(new URL(page.url()).hash,'');
   for(const width of [320,390,768,1024,1440]){
    await page.setViewportSize({width,height:900});
    for(const route of ['/','/produit-thieb.html','/produit-dibi-agneau-4.html','/panier.html']){

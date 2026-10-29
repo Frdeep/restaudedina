@@ -40,3 +40,16 @@ if(window.gsap&&window.ScrollTrigger&&document.querySelector('.hero-feature')){
     gsap.fromTo('.hero-photo',{scale:.98},{scale:1,ease:'none',scrollTrigger:{trigger:'.hero-photo',start:'top 95%',end:'top 55%',scrub:.5},clearProps:'transform'});
   });
 }
+
+// Native anchor fallback remains available without JavaScript. On-page navigation
+// scrolls and moves keyboard focus without appending a fragment to the public URL.
+document.addEventListener('click',event=>{
+ const link=event.target.closest('a[href^="#"]');
+ if(!link||event.defaultPrevented||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;
+ const id=link.getAttribute('href').slice(1),target=document.getElementById(id);if(!target)return;
+ event.preventDefault();target.scrollIntoView({behavior:reduced.matches?'instant':'smooth',block:'start'});
+ const focusTarget=target.matches('main')?target:target.querySelector('h2,h1')||target;
+ if(!focusTarget.hasAttribute('tabindex')){focusTarget.tabIndex=-1;focusTarget.addEventListener('blur',()=>focusTarget.removeAttribute('tabindex'),{once:true});}
+ focusTarget.focus({preventScroll:true});
+ if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);
+});

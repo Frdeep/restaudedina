@@ -5,6 +5,10 @@ description: Accompagner la conception et le développement du projet restaudedi
 
 # Projet restaudedina
 
+## Ajustements photos et réseaux
+
+Lire `docs/AJUSTEMENTS-V3.md`. Les 32 associations de photos sont explicites dans `data/product-media.json`, sans assortiment de secours silencieux. Les nouveaux rendus restent illustratifs. Le client a choisi les publications Instagram fournies : trois lecteurs officiels ensemble dans une grille bento, avec le fil Facebook officiel et des liens de secours. Pas de flux API automatique ni de faux posts. La navigation interne ne doit pas ajouter de fragment à l’URL en JavaScript ; conserver les ancres en secours natif.
+
 ## Améliorations de commande et vidéo
 
 La version actuelle ajoute vidéo locale avec son optionnel, aperçu des plats, fiches de produits et panier de démonstration. Lire `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. Le panier ne doit transmettre aucune commande ni demander de paiement tant que le système réel n’est pas connecté. Ne pas déclarer les mentions/CGV conformes ou définitives si des champs de `data/legal.json` manquent. Instagram : `la_cuisine_de_dina`, avec les trois publications fournies dans `data/restaurant.json`. Les lecteurs Meta sont chargés après choix explicite et restent soumis aux restrictions de la plateforme.

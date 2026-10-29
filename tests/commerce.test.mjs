@@ -46,3 +46,19 @@ test('nouveau profil et trois publications Instagram fournis par le client',()=>
 });
 
 test('mentions légales reprennent les renseignements de société fournis sans publier la naissance',async()=>{const html=await(await fetch(base+'/mentions.html')).text();for(const expected of ['DF DINA’S FOOD','951 262 922 00010','FR84951262922','500,00','Medina Tall'])assert.ok(html.includes(expected),expected);assert.ok(!html.includes('1989'));});
+
+test('chaque produit dispose de fichiers médias servis, sans assortiment de secours pour les plats',async()=>{
+ for(const p of C.products){
+  for(const width of [480,960,1440]){const r=await fetch(base+`/media/${p.media.file}-${width}.webp`,{method:'HEAD'});assert.equal(r.status,200,p.id+' '+width);assert.equal(r.headers.get('content-type'),'image/webp');}
+  if(['plats','grillades','chawarmas'].includes(p.category))assert.ok(!/assortiment|photo spécifique.*venir/i.test(p.media.label),p.id);
+ }
+ const lookup=id=>C.products.find(p=>p.id===id).media;
+ for(const ids of [['yassa','mafe','thiou'],['brochettes-poulet','brochettes-boeuf','brochettes-agneau','brochettes-mixtes'],['pastels','fatayas','nems'],['bissap-rouge','bissap-blanc','bouye','gingembre','sodas']])assert.equal(new Set(ids.map(id=>{const m=lookup(id);return m.file+'/'+m.crop;})).size,ids.length);
+ assert.ok(lookup('box-30').label.includes('non représentées exactement'));
+});
+test('accueil partage une URL canonique sans fragment et widgets gardent les vrais permaliens',async()=>{
+ const html=await(await fetch(base)).text();assert.ok(html.includes('<link rel="canonical" href="https://restaudedina.vercel.app/">'));assert.ok(html.includes('class="social-bento"'));
+ for(const url of C.socials.instagramPosts)assert.ok(html.includes(url));
+ assert.equal((await fetch(base+'/social-feed.js')).status,200);
+ assert.ok(!html.includes('<iframe'));
+});

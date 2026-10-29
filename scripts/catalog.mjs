@@ -1,3 +1,5 @@
+import {readFileSync} from 'node:fs';
+const mediaManifest=JSON.parse(readFileSync(new URL('../data/product-media.json',import.meta.url),'utf8'));
 export const productUrl=id=>`./produit-${id}.html`;
 const descriptions={
   yassa:'Poulet, oignons fondants et riz : le yassa de la carte de Dina.',
@@ -11,16 +13,11 @@ const descriptions={
   ailes:'Une portion d’ailes de poulet. Préparation et nombre de pièces à confirmer.',
 };
 function mediaFor(id){
-  if(id==='thieb')return {file:'six-assiettes',crop:'thieb',label:'Thiéb bou guinar — visuel illustratif',specific:true};
-  if(id==='daurade')return {file:'six-assiettes',crop:'poisson',label:'Poisson grillé — visuel illustratif',specific:true};
-  if(id==='saka')return {file:'six-assiettes',crop:'saka',label:'Poulet, riz et sauce verte — visuel illustratif',specific:true};
-  if(id.startsWith('brochettes'))return {file:'six-assiettes',crop:'brochettes',label:'Brochettes grillées — visuel illustratif, viande à confirmer',specific:false};
-  if(id==='poulet-entier')return {file:'poulet-braise',crop:'none',label:'Poulet entier braisé — visuel illustratif',specific:true};
-  if(['demi-poulet','cuisse-poulet'].includes(id))return {file:'six-assiettes',crop:'poulet',label:'Poulet grillé — visuel illustratif, portion présentée différente',specific:false};
-  if(['pastels','fatayas','nems'].includes(id)||id.startsWith('box-'))return {file:'entrees',crop:'none',label:'Assortiment d’entrées — visuel illustratif non spécifique',specific:false};
-  if(id==='bissap-rouge')return {file:'boisson',crop:'none',label:'Boisson rouge sombre — visuel illustratif',specific:false};
-  return {file:'six-assiettes',crop:'none',label:'Assortiment illustratif — photo spécifique du produit à venir',specific:false};
+ const media=mediaManifest[id];
+ if(!media)throw new Error('Visuel non vérifié pour le produit : '+id);
+ return {...media};
 }
+
 export function buildCatalog(d){
   return {version:1,currency:'EUR',mode:'demo',orderEnabled:false,socials:d.socials,sides:d.sides,sauces:d.sauces,orderUrl:d.orderUrl,products:d.categories.flatMap(c=>c.items.map(item=>{
     let sidesCount=0,saucesCount=0;

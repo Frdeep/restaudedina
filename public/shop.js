@@ -1,3 +1,4 @@
+import {initSocialFeeds} from './social-feed.js';
 import {CART_KEY,MAX_QUANTITY,sanitizeCart,cartTotal,addItem} from './cart-core.js';
 const money=n=>new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(n/100);
 const make=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;};
@@ -114,7 +115,7 @@ function initShop(C){
  document.querySelectorAll('.dish-link').forEach(link=>{
   link.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch')showPreview(link,true);});
   link.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch')hideTimer=setTimeout(()=>hidePreview(),180);});
-  link.addEventListener('focus',()=>{if(!suppressPreviewFocus)showPreview(link);});
+  link.addEventListener('focus',()=>{if(suppressPreviewFocus)return;requestAnimationFrame(()=>{if(document.activeElement===link)showPreview(link);});});
   link.addEventListener('pointerdown',e=>{if(e.pointerType==='touch')showPreview(link);});
   link.addEventListener('click',e=>{
    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.detail===0)return;
@@ -131,29 +132,7 @@ function initShop(C){
  document.addEventListener('scroll',()=>hidePreview(),{capture:true,passive:true});
  window.addEventListener('resize',()=>hidePreview());
  document.addEventListener('pointermove',e=>{if(e.pointerType==='touch'&&e.isPrimary){const link=document.elementFromPoint(e.clientX,e.clientY)?.closest('.dish-link');if(link)showPreview(link);}},{passive:true});
- for(const service of ['instagram','facebook']){
-  const b=document.querySelector(`[data-social-load="${service}"]`),slot=document.querySelector(`[data-social-slot="${service}"]`);if(!b||!slot)continue;
-  const original=slot.cloneNode(true);let loaded=false;
-  function setLoaded(value){
-   loaded=value;slot.replaceChildren();
-   if(value){
-    const frame=make('iframe');frame.title=service==='instagram'?'Publications Instagram de La Cuisine de Dina':'Page Facebook officielle de La Cuisine de Dina';frame.loading='lazy';frame.referrerPolicy='no-referrer';
-    if(service==='instagram'){
-      const posts=(C.socials.instagramPosts||[]).filter(url=>/^https:\/\/www\.instagram\.com\/(reel|p)\/[a-zA-Z0-9_-]+\/$/.test(url));
-      const urls=posts.length?posts:['https://www.instagram.com/la_cuisine_de_dina/'];let current=0;
-      const controls=make('div','instagram-post-controls'),counter=make('span','',`Publication 1 / ${urls.length}`);
-      const previous=make('button','quantity-button','Précédente'),next=make('button','quantity-button','Suivante');previous.type=next.type='button';previous.setAttribute('aria-label','Publication Instagram précédente');next.setAttribute('aria-label','Publication Instagram suivante');
-      const show=()=>{frame.src=urls[current]+'embed/';counter.textContent=`Publication ${current+1} / ${urls.length}`;previous.disabled=current===0;next.disabled=current===urls.length-1;};
-      previous.addEventListener('click',()=>{if(current>0){current--;show();}});next.addEventListener('click',()=>{if(current<urls.length-1){current++;show();}});controls.append(previous,counter,next);slot.append(controls);show();
-    }
-    else {const url=new URL('https://www.facebook.com/plugins/page.php');url.searchParams.set('href',C.socials.facebook);url.searchParams.set('tabs','timeline');url.searchParams.set('width','340');url.searchParams.set('height','500');url.searchParams.set('adapt_container_width','true');url.searchParams.set('small_header','false');url.searchParams.set('hide_cover','false');frame.src=url.href;}
-    frame.setAttribute('allow','encrypted-media; picture-in-picture');slot.append(frame);b.textContent='Masquer le contenu externe';
-   } else {slot.append(...[...original.childNodes].map(n=>n.cloneNode(true)));b.textContent='Afficher '+(service==='instagram'?'Instagram':'Facebook');}
-   b.setAttribute('aria-label',(value?'Masquer ':'Afficher ')+(service==='instagram'?'Instagram':'Facebook'));b.setAttribute('aria-pressed',String(value));try{if(value)sessionStorage.setItem('dina.meta.'+service,'yes');else sessionStorage.removeItem('dina.meta.'+service);}catch{}
-  }
-  b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>setLoaded(!loaded));
-  try{if(sessionStorage.getItem('dina.meta.'+service)==='yes')setLoaded(true);}catch{}
- }
+ initSocialFeeds(C.socials);
 }
 if(window.DINA_CATALOG)initShop(window.DINA_CATALOG);else window.addEventListener('DOMContentLoaded',()=>{if(window.DINA_CATALOG)initShop(window.DINA_CATALOG);},{once:true});
 const video=document.querySelector('#hero-video');
