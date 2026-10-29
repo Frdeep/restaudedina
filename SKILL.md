@@ -7,7 +7,7 @@ description: Accompagner la conception et le développement du projet restaudedi
 
 ## Ajustements photos et réseaux
 
-Lire `docs/AJUSTEMENTS-V3.md`. Les 32 associations de photos sont explicites dans `data/product-media.json`, sans assortiment de secours silencieux. Les nouveaux rendus restent illustratifs. Le client a choisi les publications Instagram fournies : trois lecteurs officiels ensemble dans une grille bento, avec le fil Facebook officiel et des liens de secours. Pas de flux API automatique ni de faux posts. La navigation interne ne doit pas ajouter de fragment à l’URL en JavaScript ; conserver les ancres en secours natif.
+Lire `docs/AJUSTEMENTS-V3.md` et `docs/WIDGETS-SOCIAUX-NATIFS.md`. Les widgets sont des composants indépendants du site, avec les codes visuels Instagram/Facebook ; ne pas réintroduire de script Elfsight/Common Ninja ni prétendre avoir inspecté leur code distant bloqué. Les 32 associations de photos sont explicites dans `data/product-media.json`, sans assortiment de secours silencieux. Les nouveaux rendus restent illustratifs. Le client a choisi les publications Instagram fournies : trois lecteurs officiels ensemble dans une grille bento, avec le fil Facebook officiel et des liens de secours. Pas de flux API automatique ni de faux posts. La navigation interne ne doit pas ajouter de fragment à l’URL en JavaScript ; conserver les ancres en secours natif.
 
 ## Améliorations de commande et vidéo
 

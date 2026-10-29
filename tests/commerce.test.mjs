@@ -62,3 +62,13 @@ test('accueil partage une URL canonique sans fragment et widgets gardent les vra
  assert.equal((await fetch(base+'/social-feed.js')).status,200);
  assert.ok(!html.includes('<iframe'));
 });
+
+
+test('widgets autonomes : liens officiels et présentation native, sans dépendance aux agrégateurs',async()=>{
+ const html=await(await fetch(base)).text(),script=await(await fetch(base+'/social-feed.js')).text();
+ for(const source of [html,script])assert.ok(!/elfsight|commonninja/i.test(source));
+ assert.equal((html.match(/data-post-url=/g)||[]).length,3);
+ for(const url of C.socials.instagramPosts)assert.ok(html.includes('data-post-url="'+url+'"'));
+ assert.ok(html.includes('network-avatar-instagram'));assert.ok(html.includes('facebook-page-header'));
+ assert.ok(html.includes('Afficher les publications Instagram'));assert.ok(html.includes('Afficher les publications Facebook'));
+});

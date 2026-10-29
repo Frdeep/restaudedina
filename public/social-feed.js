@@ -8,14 +8,16 @@ export function initSocialFeeds(socials){
   const initial=[...slot.childNodes].map(n=>n.cloneNode(true));let loaded=false,timers=[],observers=[],generation=0;
   const name=service==='instagram'?'Instagram':'Facebook';
   function mount(url,title,permalink,cls='social-post-card'){
-   const card=node('article',cls),frame=node('iframe'),fallback=node('a','social-post-link','Ouvrir sur '+name);
+   const template=service==='instagram'?initial.find(n=>n.nodeType===1&&n.dataset.postUrl===permalink):null;
+   const card=template?template.cloneNode(true):node('article',cls),frame=node('iframe'),fallback=node('a','social-post-link','Ouvrir sur '+name);
    fallback.href=permalink;fallback.target='_blank';fallback.rel='noopener noreferrer';
    frame.title=title;frame.loading='lazy';frame.referrerPolicy='strict-origin-when-cross-origin';frame.allow='encrypted-media; picture-in-picture';frame.src=url;
    const ticket=generation;
    // Cross-origin load events do not certify that a post was made visible by Meta.
    frame.addEventListener('error',()=>{if(ticket===generation){card.classList.add('embed-unavailable');status.textContent='Le lecteur est indisponible. Utilisez le lien vers '+name+' ou réessayez.';}});
    if(service==='instagram'){
-    const viewport=node('div','social-frame-window');viewport.append(frame);card.append(viewport,fallback);slot.append(card);
+    const viewport=node('div','social-frame-window');viewport.append(frame);
+    const media=card.querySelector('[data-social-media]');if(media)media.replaceChildren(viewport);else card.append(viewport,fallback);slot.append(card);
     // Official embeds require a minimum layout width. Fit that layout into narrow
     // phones without clipping its right edge or disabling page zoom.
     if(window.ResizeObserver){let previousWidth=-1;const observer=new ResizeObserver(()=>{
@@ -45,7 +47,7 @@ export function initSocialFeeds(socials){
    }else{
     slot.append(...initial.map(n=>n.cloneNode(true)));status.textContent='Contenu externe masqué. Les liens officiels restent disponibles.';
    }
-   button.textContent=value?'Masquer '+name:'Afficher '+name;button.setAttribute('aria-pressed',String(value));retry.hidden=!value;
+   button.textContent=value?'Masquer les publications '+name:'Afficher les publications '+name;button.setAttribute('aria-pressed',String(value));retry.hidden=!value;
    try{if(value)sessionStorage.setItem('dina.meta.'+service,'yes');else sessionStorage.removeItem('dina.meta.'+service);}catch{}
   }
   button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>show(!loaded));retry.addEventListener('click',()=>show(true));

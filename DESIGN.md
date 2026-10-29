@@ -50,3 +50,7 @@ Les lecteurs officiels des réseaux doivent être chargés uniquement après le 
 - Ne pas déduire une nouvelle charte d’un résultat de recherche de palette.
 - Ne pas transformer une amélioration ciblée en refonte générale ou en migration de framework.
 - Ne pas inventer d’avis, d’abonnés, de recettes, de services, de prix ou d’informations légales.
+
+## Identité des widgets sociaux
+
+À la demande explicite du client, les surfaces des widgets reprennent les codes Instagram/Facebook : avatars cerclés violet/rose/orange et contrôles Facebook bleus (#0866ff), sur blanc. Ces couleurs sont limitées à `.social-bento` ; elles ne changent pas la palette générale du site. Ne pas ajouter de faux badges de vérification, compteurs de réactions ou abonnés. Les lecteurs officiels ne sont pas présentés comme des captures de publications tant que leur contenu n’est pas chargé. Les composants du site n’utilisent pas les scripts Elfsight/Common Ninja.

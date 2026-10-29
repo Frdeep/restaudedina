@@ -78,33 +78,66 @@ html:has(.site-dialog[open]){overflow:hidden}
 @media print{.skip{display:none!important}}
 :root{--control-line:#8a7468}.product-options select,.product-buy input,.quantity-button,.icon-button{border-color:var(--control-line)}
 
-/* Bento social: three official posts, a live Page reader and a visit card. */
+/* Independent social widgets: network identity stays inside the feed surface. */
 .social-bento{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:1.5rem;align-items:stretch}
-.social-widget{min-width:0;padding:1.5rem;border:1px solid var(--line);border-radius:16px;background:var(--white)}
-.instagram-widget{grid-column:1/-1}
-.social-widget .social-card-head{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
-.social-card-head h3{font:600 1.35rem/1.2 var(--body);color:var(--brown)}
+.social-widget{min-width:0;background:var(--white)}
+.instagram-widget{grid-column:1/-1;margin-bottom:1rem}
+.social-widget .social-card-head{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.social-card-head h3{font:650 1.65rem/1.2 var(--body);color:var(--black);letter-spacing:-.02em}
 .social-widget .social-card-head>p{margin-left:auto;font-weight:550;max-width:24rem}
-.social-card-head a{font-size:.95rem;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
-.social-widget .social-embed-actions{justify-content:flex-start;flex-wrap:wrap}
-.social-feed-status{font-size:.9rem;color:var(--muted);font-weight:550;min-height:1.5em;margin:1rem 0}
-.social-post-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
-.social-post-card{min-width:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
-.social-post-placeholder{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1rem;padding:1.5rem;min-height:280px}
-.social-post-placeholder h4{font-size:1.15rem;color:var(--brown)}
-.social-post-placeholder p{font-weight:550}
+.social-card-head a,.facebook-page-identity a{font-size:.95rem;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.network-brand{width:48px;height:48px;display:grid;place-items:center;flex-shrink:0;border-radius:12px}
+.network-brand svg{width:28px;height:28px;stroke:currentColor;stroke-width:1.7;fill:none}
+.instagram-brand{background:var(--black);color:var(--white)}
+.facebook-brand{background:var(--facebook-blue);color:var(--white);border-radius:50%}
+.facebook-brand svg,.facebook-mark svg{fill:currentColor;stroke:none}
+.network-avatar{display:inline-grid;place-items:center;flex-shrink:0;width:42px;height:42px;padding:2px;border-radius:50%;background:var(--line)}
+.network-avatar-instagram{background:conic-gradient(var(--instagram-violet),var(--instagram-pink),var(--instagram-orange),var(--instagram-violet))}
+.network-avatar img{display:block;width:100%;height:100%;object-fit:contain;background:white;border-radius:50%;border:2px solid white}
+.network-avatar-facebook{background:var(--facebook-blue)}
+.social-widget .social-embed-actions{justify-content:flex-start;flex-wrap:wrap;padding:0;gap:1rem}
+.network-button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;max-width:100%;padding:.7rem 1.1rem;border:0;border-radius:8px;font-size:.9rem;font-weight:650;background:var(--black);color:var(--white);touch-action:manipulation;transition:opacity .15s}
+.network-button-facebook{background:var(--facebook-blue)}
+.social-profile-link{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;text-decoration:underline;text-underline-offset:4px;font-weight:600;font-size:.9rem}
+.social-profile-link svg,.social-post-link svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;flex-shrink:0}
+.social-feed-status{font-size:.85rem;color:var(--muted);font-weight:550;min-height:1.5em;margin:.8rem 0 1.25rem;max-width:75ch}
+.social-post-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1rem;align-items:stretch}
+.social-post-card{grid-column:span 3;min-width:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white);display:flex;flex-direction:column}
+.social-post-featured{grid-column:span 6}
+.native-post-head{display:flex;align-items:center;gap:.65rem;padding:.9rem;min-height:78px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.native-post-head>div{min-width:0;flex:1}
+.native-post-head a,.native-post-head strong{font-size:.85rem;font-weight:650;line-height:1.3;display:block;overflow-wrap:anywhere}
+.native-post-head>div>span{display:block;font-size:.72rem;color:var(--muted);margin-top:.25rem;line-height:1.35}
+.post-format{font-size:.7rem;font-weight:600;color:var(--muted)}
+.native-post-media{flex:1;min-width:0;background:var(--white)}
+.social-post-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;padding:1.5rem;min-height:350px;height:100%;text-align:center;background:var(--social-soft)}
+.instagram-placeholder-mark{display:grid;place-items:center;width:68px;height:68px;border-radius:18px;background:white;color:var(--black);border:1px solid var(--line)}
+.instagram-placeholder-mark svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.6}.instagram-placeholder-mark svg:has(path:only-child){fill:currentColor;stroke:none}
+.social-post-placeholder h4{font:650 clamp(1.05rem,1.5vw,1.5rem)/1.3 var(--body);color:var(--black)}
+.social-post-placeholder>span:last-child{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:550}.social-post-placeholder>span:last-child svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}
+.native-post-footer{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;padding:.75rem .9rem;min-height:66px;border-top:1px solid var(--line);margin-top:auto}
+.network-mark{display:inline-flex;gap:.4rem;align-items:center;font-weight:600;font-size:.75rem}.network-mark svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.7;fill:none}
+.social-post-link{font-size:.8rem;font-weight:600;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:inline-flex;align-items:center;gap:.45rem}
 .social-post-card iframe{width:100%;height:660px;border:0;background:var(--white)}
-.social-post-link{font-size:.9rem;font-weight:600;text-decoration:underline;text-underline-offset:4px;min-height:48px;display:flex;align-items:center;padding:.75rem 1rem;margin-top:auto}
+.facebook-widget{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--social-soft);padding:0 1.25rem 1.25rem}
+.facebook-page-header{margin:0 -1.25rem 1.5rem;background:var(--white);border-bottom:1px solid var(--line)}
+.facebook-cover{display:flex;align-items:center;gap:1rem;min-height:120px;padding:1.5rem;background:var(--facebook-tint);color:var(--black);font-size:clamp(1.3rem,2vw,2rem);font-weight:650}
+.facebook-page-identity{display:flex;align-items:center;gap:1rem;padding:1.25rem;min-width:0}.facebook-page-identity>div{min-width:0}.facebook-page-identity .network-avatar{width:58px;height:58px}
+.facebook-page-identity h3{font:650 1.3rem/1.3 var(--body);color:var(--black);overflow-wrap:anywhere}
+.facebook-widget .social-profile-link{color:var(--facebook-blue)}
 .facebook-feed{min-width:0;max-width:100%;display:flex;justify-content:center}
-.facebook-timeline{width:100%;max-width:500px;min-width:0}
+.facebook-native-placeholder{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--white);overflow:hidden}
+.facebook-placeholder-body{padding:2rem 1.5rem;min-height:240px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1rem}
+.facebook-placeholder-body h4{font-size:1.5rem;line-height:1.3;color:var(--black)}.facebook-placeholder-body p{font-weight:550}
+.facebook-timeline{width:100%;max-width:500px;min-width:0;background:white;border-radius:12px;overflow:hidden;padding-bottom:.5rem}.facebook-timeline .social-post-link{padding:.5rem 1rem}
 .facebook-timeline iframe{width:100%;height:650px;border:0}
-.facebook-widget .social-fallback{margin-top:1rem}
+.social-fallback{font-size:.78rem;font-weight:500;color:var(--muted);padding:0;margin-top:1rem;max-width:85ch}
 .social-visit-card{background:var(--yellow);color:var(--brown);border-radius:16px;padding:clamp(1.5rem,3vw,3rem);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1.5rem;min-width:0}
 .social-visit-card>span{font-weight:600}.social-visit-card h3{font:400 clamp(2.5rem,5vw,5rem)/1.05 var(--display);letter-spacing:-.03em}
 .social-visit-card p{font-size:1.25rem;font-weight:600}.social-visit-card .button{padding:.8rem 1.2rem}
-@media(min-width:1101px){.social-post-card:nth-child(2){margin-top:2rem}.social-post-card:nth-child(3){margin-top:4rem}}
-@media(max-width:1100px){.social-post-grid{grid-template-columns:1fr}.social-post-card iframe{height:700px;max-width:540px;align-self:center}.social-bento{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
-@media(max-width:760px){.social-bento{grid-template-columns:minmax(0,1fr)}.social-widget{padding:1rem}.social-widget .social-card-head>p{margin-left:0}.social-post-grid{gap:1.25rem}.social-post-placeholder{min-height:240px}.social-post-card iframe{height:660px}.social-visit-card{min-height:360px}.social-widget .social-embed-actions .button{padding:.7rem 1rem}.social-widget .social-fallback{overflow-wrap:anywhere}}
+@media(hover:hover) and (pointer:fine){.network-button:hover{opacity:.85}.social-post-placeholder:hover h4,.native-post-head a:hover{text-decoration:underline;text-underline-offset:4px}}
+@media(max-width:1100px){.social-post-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.social-post-card{grid-column:span 1}.social-post-featured{grid-column:1/-1}.social-bento{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:760px){.social-bento{grid-template-columns:minmax(0,1fr)}.social-post-grid{grid-template-columns:minmax(0,1fr);gap:1.25rem}.social-post-card,.social-post-featured{grid-column:1}.social-widget .social-card-head>p{margin-left:0}.social-post-placeholder{min-height:300px}.social-visit-card{min-height:360px}.native-post-head{padding:.85rem}.facebook-widget{padding:0 .8rem 1rem}.facebook-page-header{margin:0 -.8rem 1.25rem}.facebook-cover{padding:1rem;min-height:100px}.facebook-page-identity{padding:1rem}.facebook-page-identity .network-avatar{width:48px;height:48px}.facebook-page-identity h3{font-size:1.05rem}.network-button{font-size:.85rem}.social-profile-link{font-size:.85rem}.social-feed-status{overflow-wrap:anywhere}}
 
 /* Studio sheets: exact square cells, no generic assortment substituted for a dish. */
 .product-visual.crop-studio-2-0 img{width:200%;height:200%;left:0%;top:0%}
@@ -127,3 +160,7 @@ html:has(.site-dialog[open]){overflow:hidden}
 .product-visual.crop-saka{clip-path:inset(1% 5% 1% 1%)}
 .product-visual.crop-studio-3-4:has(img[src*="studio-grillades"]){clip-path:inset(1% 3% 13% 3%)}
 .product-visual.crop-saka{clip-path:inset(1% 8% 1% 1%)}
+
+/* Network colors are scoped to the requested social surfaces. */
+.social-bento{--facebook-blue:#0866ff;--facebook-tint:#e7f0ff;--instagram-violet:#833ab4;--instagram-pink:#c13584;--instagram-orange:#f77737;--social-soft:#f6f6f6}
+.network-mark.facebook-mark svg{fill:currentColor;stroke:none}

@@ -28,6 +28,8 @@ const fs=require('node:fs/promises');
   await page.goto(base,{waitUntil:'networkidle'});await page.locator('[data-legal=mentions]').first().click();await page.locator('#legal-mentions').waitFor({state:'visible'});assert.ok((await page.locator('#legal-mentions').textContent()).includes('DINA’S FOOD'));await page.keyboard.press('Escape');assert.equal(await page.locator('#legal-mentions').isVisible(),false);assert.equal(await page.locator('[data-legal=mentions]').first().evaluate(el=>el===document.activeElement),true);
   await page.locator('[data-social-load=instagram]').click();
   assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
+  assert.equal(await page.locator('[data-social-slot=instagram] .native-post-head').count(),3);
+  assert.equal(await page.locator('[data-social-slot=instagram] .native-post-footer').count(),3);
   for(const [index,id] of ['Cu_9HepI3N5','Cuc2b7iIV3K','CuQHV9zodWB'].entries()){
    const frame=page.locator('[data-social-slot=instagram] iframe').nth(index);
    assert.ok((await frame.getAttribute('src')).includes(id+'/embed/'));
@@ -35,7 +37,7 @@ const fs=require('node:fs/promises');
   }
   await page.locator('[data-social-retry=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
   await page.locator('[data-social-slot=instagram]').screenshot({path:'artifacts/v2/social-bento-routing-test.png'});
-  await page.locator('[data-social-load=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),0);
+  await page.locator('[data-social-load=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),0);assert.equal(await page.locator('[data-social-slot=instagram] .social-post-placeholder').count(),3);
   await page.locator('[data-social-load=facebook]').click();const fbSrc=new URL(await page.locator('[data-social-slot=facebook] iframe').getAttribute('src'));assert.equal(fbSrc.pathname,'/plugins/page.php');assert.equal(fbSrc.searchParams.get('href'),'https://www.facebook.com/100060362415980/');assert.equal(fbSrc.searchParams.get('tabs'),'timeline');await page.locator('[data-social-load=facebook]').click();assert.equal(await page.locator('iframe').count(),0);
   await page.locator('.header nav a[href="#venir"]').click();assert.equal(new URL(page.url()).hash,'');assert.equal(await page.locator('#visit-title').evaluate(el=>el===document.activeElement),true);
   await page.goto(base+'/#venir',{waitUntil:'networkidle'});await page.locator('.header nav a[href="#carte"]').click();assert.equal(new URL(page.url()).hash,'');
