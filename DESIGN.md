@@ -42,7 +42,7 @@ Préserver l’ordre et les parcours du site existant hors de la surface demand�
 
 Conserver des boutons contrastés et des états de focus visibles. Les filtres doivent laisser la carte consultable sans JavaScript. Réutiliser les traitements partagés du site avant d’ajouter une nouvelle variante.
 
-Les lecteurs officiels des réseaux doivent être chargés uniquement après le choix de l’utilisateur, avec des liens de secours et une possibilité de retirer ce choix. Ne pas présenter de fausses publications. Identifier les rendus de plats et le logo adaptés comme des visuels recréés lorsque leur provenance est présentée.
+Sur demande explicite du client, les lecteurs officiels et la carte se chargent automatiquement, sans bouton d’activation. Conserver leurs liens directs et un contrôle de nouvel essai pour les réseaux. Afficher les comptes Instagram séparément, sans attribuer une publication au mauvais compte. Ne pas présenter de fausses publications. Identifier les rendus de plats et le logo adaptés comme des visuels recréés lorsque leur provenance est présentée.
 
 ## Do's and Don'ts
 

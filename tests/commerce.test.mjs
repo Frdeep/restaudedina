@@ -41,8 +41,8 @@ test('stockage corrompu, expiré et choix mal formés ne cassent pas le panier',
  const missing={...empty(),lines:[{productId:'thieb',qty:1,choices:{}}]};assert.deepEqual(sanitizeCart(missing,C).lines,[]);
  const mixed={...empty(),lines:[{productId:'thieb',qty:2,priceCents:1,choices:plain},{productId:'fake',qty:1,choices:plain}]};const cart=sanitizeCart(mixed,C);assert.equal(cart.lines.length,1);assert.equal(cartTotal(cart,C),3400);assert.equal(cart.lines[0].priceCents,undefined);
 });
-test('nouveau profil et trois publications Instagram fournis par le client',()=>{
- assert.equal(C.socials.instagram,'https://www.instagram.com/la_cuisine_de_dina/');assert.equal(C.socials.instagramPosts.length,3);assert.ok(C.socials.instagramPosts[0].includes('Cu_9HepI3N5'));
+test('deux comptes Instagram, quatre publications et une story séparés selon les liens du client',()=>{
+ assert.equal(C.socials.instagram,'https://www.instagram.com/cuisinededina/');assert.equal(C.socials.instagramAccounts.length,2);const account=C.socials.instagramAccounts.find(a=>a.id==='la-cuisine-de-dina');assert.equal(account.posts.length,3);assert.ok(account.posts[0].includes('Cu_9HepI3N5'));assert.equal(C.socials.instagramAccounts[0].handle,'@cuisinededina');assert.deepEqual(C.socials.instagramAccounts[0].posts,['https://www.instagram.com/p/C4GlrBSofJx/']);assert.ok(C.socials.instagramAccounts[0].highlights[0].url.includes('18057664687533926'));
 });
 
 test('mentions légales reprennent les renseignements de société fournis sans publier la naissance',async()=>{const html=await(await fetch(base+'/mentions.html')).text();for(const expected of ['DF DINA’S FOOD','951 262 922 00010','FR84951262922','500,00','Medina Tall'])assert.ok(html.includes(expected),expected);assert.ok(!html.includes('1989'));});
@@ -58,17 +58,27 @@ test('chaque produit dispose de fichiers médias servis, sans assortiment de sec
 });
 test('accueil partage une URL canonique sans fragment et widgets gardent les vrais permaliens',async()=>{
  const html=await(await fetch(base)).text();assert.ok(html.includes('<link rel="canonical" href="https://restaudedina.vercel.app/">'));assert.ok(html.includes('class="social-bento"'));
- for(const url of C.socials.instagramPosts)assert.ok(html.includes(url));
+ for(const url of C.socials.instagramAccounts.flatMap(a=>a.posts))assert.ok(html.includes(url));
  assert.equal((await fetch(base+'/social-feed.js')).status,200);
- assert.ok(!html.includes('<iframe'));
+ assert.ok(html.includes('<iframe'));assert.ok(!html.includes('data-social-load'));assert.ok(html.includes('maps.google.com/maps?'));
 });
 
 
 test('widgets autonomes : liens officiels et présentation native, sans dépendance aux agrégateurs',async()=>{
  const html=await(await fetch(base)).text(),script=await(await fetch(base+'/social-feed.js')).text();
  for(const source of [html,script])assert.ok(!/elfsight|commonninja/i.test(source));
- assert.equal((html.match(/data-post-url=/g)||[]).length,3);
- for(const url of C.socials.instagramPosts)assert.ok(html.includes('data-post-url="'+url+'"'));
+ assert.equal((html.match(/data-post-url=/g)||[]).length,4);
+ for(const url of C.socials.instagramAccounts.flatMap(a=>a.posts))assert.ok(html.includes('data-post-url="'+url+'"'));
  assert.ok(html.includes('network-avatar-instagram'));assert.ok(html.includes('facebook-page-header'));
- assert.ok(html.includes('Afficher les publications Instagram'));assert.ok(html.includes('Afficher les publications Facebook'));
+ assert.ok(!html.includes('Afficher les publications'));assert.ok(!html.includes('data-social-load'));assert.ok(html.includes('@cuisinededina'));assert.ok(html.includes('@la_cuisine_de_dina'));
+});
+
+
+test('carte Maps en français, adresse précise, ressources externes autorisées et politique à jour',async()=>{
+ const response=await fetch(base),html=await response.text();
+ const src=html.match(/class="restaurant-map" src="([^"]+)"/)[1].replaceAll('&amp;','&');
+ const url=new URL(src);assert.equal(url.hostname,'maps.google.com');assert.equal(url.searchParams.get('hl'),'fr');assert.equal(url.searchParams.get('q'),'35 rue Vivenel, 60200 Compiègne');assert.equal(url.searchParams.get('output'),'embed');
+ assert.ok(response.headers.get('content-security-policy').includes('https://maps.google.com https://www.google.com'));
+ assert.ok(!/embedmaps\.com|mapswebsite\.net/.test(html));
+ const privacy=await(await fetch(base+'/confidentialite.html')).text();assert.ok(privacy.includes('se chargent automatiquement'));assert.ok(!privacy.includes('Aucun lecteur Meta n’est chargé avant'));
 });

@@ -5,13 +5,17 @@ description: Accompagner la conception et le développement du projet restaudedi
 
 # Projet restaudedina
 
+## Chargement automatique et localisation — consigne actuelle
+
+Les lecteurs sociaux se chargent automatiquement sans bouton d’activation, y compris sans JavaScript. `cuisinededina` est le compte Instagram principal ; conserver également `la_cuisine_de_dina` avec ses publications séparées dans `instagramAccounts`. Ne pas inventer de permaliens pour un compte sans publications fournies. La carte Google Maps provient directement de l’iframe fournie, sans SDK de générateur ; conserver le lien d’itinéraire et les contrôles natifs Google. Cette consigne remplace les anciennes mentions de consentement dans l’historique ci-dessous.
+
 ## Ajustements photos et réseaux
 
 Lire `docs/AJUSTEMENTS-V3.md` et `docs/WIDGETS-SOCIAUX-NATIFS.md`. Les widgets sont des composants indépendants du site, avec les codes visuels Instagram/Facebook ; ne pas réintroduire de script Elfsight/Common Ninja ni prétendre avoir inspecté leur code distant bloqué. Les 32 associations de photos sont explicites dans `data/product-media.json`, sans assortiment de secours silencieux. Les nouveaux rendus restent illustratifs. Le client a choisi les publications Instagram fournies : trois lecteurs officiels ensemble dans une grille bento, avec le fil Facebook officiel et des liens de secours. Pas de flux API automatique ni de faux posts. La navigation interne ne doit pas ajouter de fragment à l’URL en JavaScript ; conserver les ancres en secours natif.
 
 ## Améliorations de commande et vidéo
 
-La version actuelle ajoute vidéo locale avec son optionnel, aperçu des plats, fiches de produits et panier de démonstration. Lire `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. Le panier ne doit transmettre aucune commande ni demander de paiement tant que le système réel n’est pas connecté. Ne pas déclarer les mentions/CGV conformes ou définitives si des champs de `data/legal.json` manquent. Instagram : `la_cuisine_de_dina`, avec les trois publications fournies dans `data/restaurant.json`. Les lecteurs Meta sont chargés après choix explicite et restent soumis aux restrictions de la plateforme.
+La version actuelle ajoute vidéo locale avec son optionnel, aperçu des plats, fiches de produits et panier de démonstration. Lire `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. Le panier ne doit transmettre aucune commande ni demander de paiement tant que le système réel n’est pas connecté. Ne pas déclarer les mentions/CGV conformes ou définitives si des champs de `data/legal.json` manquent. Instagram : `la_cuisine_de_dina`, avec les trois publications fournies dans `data/restaurant.json`. Les lecteurs Meta sont chargés automatiquement et restent soumis aux restrictions de la plateforme.
 
 ## Workflow actuel prioritaire
 

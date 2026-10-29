@@ -8,9 +8,9 @@ const fs=require('node:fs/promises');
   browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});await fs.mkdir('artifacts/v2',{recursive:true});
   const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),errors=[],metaRequests=[];
   context.on('page',page=>page.on('pageerror',e=>errors.push(String(e))));
-  await context.route(/https:\/\/(www\.)?(instagram|facebook)\.com\/.*/,route=>{metaRequests.push(route.request().url());return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Test du lecteur officiel</title><p>Contenu Meta simulé uniquement pour vérifier le routage et le consentement.</p>'});});
+  await context.route(/https:\/\/((www\.)?(instagram|facebook)|maps\.google|www\.google)\.com\/.*/,route=>{metaRequests.push(route.request().url());return route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><title>Test du lecteur officiel</title><p>Contenu Meta simulé uniquement pour vérifier le routage du chargement automatique.</p>'});});
   const page=await context.newPage();await page.goto(base,{waitUntil:'networkidle'});
-  assert.ok((await page.locator('h1').textContent()).includes('DINA'));assert.equal(metaRequests.length,0);assert.equal(await page.locator('iframe').count(),0);
+  assert.ok((await page.locator('h1').textContent()).includes('DINA'));assert.equal(await page.locator('[data-social-load]').count(),0);assert.equal(await page.locator('.social-widget iframe').count(),5);assert.equal(await page.locator('.restaurant-map').count(),1);
   assert.equal(await page.locator('#hero-video').evaluate(v=>v.muted),true);assert.equal(await page.locator('#hero-video').evaluate(v=>v.paused),true);
   await page.locator('#video-sound').click();assert.equal(await page.locator('#hero-video').evaluate(v=>v.muted),false);await page.locator('#video-sound').click();assert.equal(await page.locator('#hero-video').evaluate(v=>v.muted),true);
   await page.locator('#hero-video').evaluate(async v=>{v.muted=true;await v.play();});
@@ -26,19 +26,17 @@ const fs=require('node:fs/promises');
   await page.reload({waitUntil:'networkidle'});assert.ok((await page.locator('.checkout-card [data-cart-total]').textContent()).includes('51,00'));await page.getByRole('button',{name:'Retirer Thiéb bou guinar',exact:true}).click();assert.equal(await page.locator('.cart-empty-card').isVisible(),true);await page.locator('.cart-page-grid [data-cart-undo] button').click();assert.ok((await page.locator('.checkout-card [data-cart-total]').textContent()).includes('51,00'));await page.screenshot({path:'artifacts/v2/panier-desktop.png',fullPage:true});
   await page.goto(base+'/produit-demi-poulet.html',{waitUntil:'networkidle'});await page.locator('[name=side-0]').selectOption('Riz blanc');await page.locator('[name=sauce-0]').selectOption('Blanche');await page.getByRole('button',{name:'Ajouter au panier',exact:true}).click();await page.locator('#cart-dialog').waitFor({state:'visible'});assert.ok((await page.locator('#cart-dialog').textContent()).includes('Riz blanc · Blanche'));await page.keyboard.press('Escape');assert.equal(await page.locator('#cart-dialog').isVisible(),false);
   await page.goto(base,{waitUntil:'networkidle'});await page.locator('[data-legal=mentions]').first().click();await page.locator('#legal-mentions').waitFor({state:'visible'});assert.ok((await page.locator('#legal-mentions').textContent()).includes('DINA’S FOOD'));await page.keyboard.press('Escape');assert.equal(await page.locator('#legal-mentions').isVisible(),false);assert.equal(await page.locator('[data-legal=mentions]').first().evaluate(el=>el===document.activeElement),true);
-  await page.locator('[data-social-load=instagram]').click();
-  assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
-  assert.equal(await page.locator('[data-social-slot=instagram] .native-post-head').count(),3);
-  assert.equal(await page.locator('[data-social-slot=instagram] .native-post-footer').count(),3);
+  assert.equal(await page.locator('[data-social-slot=instagram-la-cuisine-de-dina] iframe').count(),3);
+  assert.equal(await page.locator('[data-social-slot=instagram-la-cuisine-de-dina] .native-post-head').count(),3);
+  assert.equal(await page.locator('[data-social-slot=instagram-la-cuisine-de-dina] .native-post-footer').count(),3);
   for(const [index,id] of ['Cu_9HepI3N5','Cuc2b7iIV3K','CuQHV9zodWB'].entries()){
-   const frame=page.locator('[data-social-slot=instagram] iframe').nth(index);
+   const frame=page.locator('[data-social-slot=instagram-la-cuisine-de-dina] iframe').nth(index);
    assert.ok((await frame.getAttribute('src')).includes(id+'/embed/'));
    assert.equal(await frame.getAttribute('referrerpolicy'),'strict-origin-when-cross-origin');
   }
-  await page.locator('[data-social-retry=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),3);
-  await page.locator('[data-social-slot=instagram]').screenshot({path:'artifacts/v2/social-bento-routing-test.png'});
-  await page.locator('[data-social-load=instagram]').click();assert.equal(await page.locator('[data-social-slot=instagram] iframe').count(),0);assert.equal(await page.locator('[data-social-slot=instagram] .social-post-placeholder').count(),3);
-  await page.locator('[data-social-load=facebook]').click();const fbSrc=new URL(await page.locator('[data-social-slot=facebook] iframe').getAttribute('src'));assert.equal(fbSrc.pathname,'/plugins/page.php');assert.equal(fbSrc.searchParams.get('href'),'https://www.facebook.com/100060362415980/');assert.equal(fbSrc.searchParams.get('tabs'),'timeline');await page.locator('[data-social-load=facebook]').click();assert.equal(await page.locator('iframe').count(),0);
+  await page.locator('[data-social-retry=instagram-la-cuisine-de-dina]').click();assert.equal(await page.locator('[data-social-slot=instagram-la-cuisine-de-dina] iframe').count(),3);
+  await page.locator('[data-social-slot=instagram-la-cuisine-de-dina]').screenshot({path:'artifacts/v2/social-bento-routing-test.png'});
+  const fbSrc=new URL(await page.locator('[data-social-slot=facebook] iframe').getAttribute('src'));assert.equal(fbSrc.pathname,'/plugins/page.php');assert.equal(fbSrc.searchParams.get('href'),'https://www.facebook.com/100060362415980/');assert.equal(fbSrc.searchParams.get('tabs'),'timeline');assert.equal(await page.locator('[data-social-load]').count(),0);
   await page.locator('.header nav a[href="#venir"]').click();assert.equal(new URL(page.url()).hash,'');assert.equal(await page.locator('#visit-title').evaluate(el=>el===document.activeElement),true);
   await page.goto(base+'/#venir',{waitUntil:'networkidle'});await page.locator('.header nav a[href="#carte"]').click();assert.equal(new URL(page.url()).hash,'');
   for(const width of [320,390,768,1024,1440]){
@@ -54,6 +52,6 @@ const fs=require('node:fs/promises');
   await phone.locator('[name=quantity]').fill('1');await phone.getByRole('button',{name:'Ajouter au panier',exact:true}).click();await phone.locator('#cart-dialog').waitFor({state:'visible'});await phone.keyboard.press('Escape');assert.equal(await phone.locator('#cart-dialog').isVisible(),false);
   await phone.evaluate(()=>localStorage.setItem('dina.cart.v1','{"version":1,"updatedAt":'+Date.now()+',"lines":[{"productId":"thieb","qty":2,"choices":{}}]}'));await phone.goto(base+'/panier.html',{waitUntil:'networkidle'});assert.equal(await phone.locator('.cart-empty-card').isVisible(),true);
   const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});const plain=await nojs.newPage();await plain.goto(base,{waitUntil:'networkidle'});assert.equal(await plain.locator('.dish-link').count(),32);await plain.locator('[data-product-id=thieb]').click();await plain.waitForURL('**/produit-thieb.html');assert.equal(await plain.getByRole('button',{name:'Ajouter au panier'}).isDisabled(),true);await plain.goto(base+'/mentions.html');assert.ok((await plain.locator('main').textContent()).includes('SIREN 951 262 922'));
-  assert.deepEqual(errors,[]);assert.ok(metaRequests.length>0);console.log('OK : double activation souris/tactile, panier persistant et choix, démonstration, dialogues/clavier, Meta sur consentement (contenu simulé), stockage invalide, pages sans JS.');
+  assert.deepEqual(errors,[]);assert.ok(metaRequests.length>0);console.log('OK : double activation souris/tactile, panier persistant et choix, démonstration, dialogues/clavier, Meta automatique (contenu simulé), stockage invalide, pages sans JS.');
  }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

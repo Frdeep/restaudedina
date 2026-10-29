@@ -8,7 +8,7 @@ Les instructions permanentes sont dans [AGENTS.md](AGENTS.md), la charte dans [D
 
 ## Refonte actuelle
 
-Workflow et limites : [REFONTE.md](docs/REFONTE.md). Résultats : [VALIDATION-REFONTE.md](docs/VALIDATION-REFONTE.md). Maquettes ordinateur/mobile importables dans Figma : dossier `design/`. Charte blanche, noire, cacao et jaune ; logo adapté et huit rendus studio dans `public/media/`. Lecteurs officiels Facebook/Instagram chargés après consentement, avec liens de secours. Carte de 32 références et PDF téléchargeable inclus.
+Workflow et limites : [REFONTE.md](docs/REFONTE.md). Résultats : [VALIDATION-REFONTE.md](docs/VALIDATION-REFONTE.md). Maquettes ordinateur/mobile importables dans Figma : dossier `design/`. Charte blanche, noire, cacao et jaune ; logo adapté et huit rendus studio dans `public/media/`. Lecteurs officiels Facebook/Instagram et carte Google Maps chargés automatiquement, avec liens directs. Carte de 32 références et PDF téléchargeable inclus.
 
 `npm run build` produit l’export Vercel. `scripts/check-browser.cjs` utilise les outils Playwright/Chromium préinstallés dans cet environnement de développement. `scripts/prepare-media.cjs` est un outil de préparation utilisant Sharp et les originaux locaux ; il n’est pas exécuté au build Vercel. Les médias optimisés, polices et scripts vendor sont committés pour un build reproductible sans ces outils.
 
@@ -24,7 +24,7 @@ Depuis `/workspace/restaudedina`, exécuter `npm start` (ou `node server.mjs`). 
 - API : `/api/health`, `/api/menu`, `/api/restaurant`. HTML rendu côté serveur depuis la même source JSON.
 
 ## Contenus
-Modifier `data/restaurant.json`, puis redémarrer le serveur et régénérer l’export. Les tarifs proviennent des cartes et recherches transmises ; certains ont été relevés sur Uber Eats et restent identifiés comme indicatifs. La carte est une sélection documentée, pas une carte exhaustive validée. Le panier conserve seulement les sélections dans le navigateur ; aucun paiement ou envoi de commande n’est actif. Les lecteurs Meta sont optionnels et ne se chargent qu’après le choix explicite de l’utilisateur.
+Modifier `data/restaurant.json`, puis redémarrer le serveur et régénérer l’export. Les tarifs proviennent des cartes et recherches transmises ; certains ont été relevés sur Uber Eats et restent identifiés comme indicatifs. La carte est une sélection documentée, pas une carte exhaustive validée. Le panier conserve seulement les sélections dans le navigateur ; aucun paiement ou envoi de commande n’est actif. Les lecteurs Meta et Google Maps se chargent automatiquement, sans bouton d’activation.
 
 ## Publication
 L’export peut être hébergé sur un hébergement statique HTTPS ; pour les API, utiliser un service Node.js >=22 avec `npm start` et variable `PORT`. URL publique et domaine dépendent de cet hébergement. Aucun déploiement public n’est réalisé par ces commandes. Ne pas transmettre une adresse localhost à un client externe.
@@ -33,6 +33,10 @@ Avant mise en ligne définitive : intégrer les fichiers photos officiels et le 
 
 ## Améliorations version démonstration
 
-Voir `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. La vidéo du hero est dans `public/video/`. Le catalogue dérivé des 32 références est construit par `scripts/catalog.mjs` ; chaque fiche `produit-<id>.html` et le panier sont exportés statiquement. `public/cart-core.js` valide les sélections et calcule en centimes. `node scripts/check-commerce.cjs` vérifie les parcours, les gestes tactiles synthétisés et les lecteurs Meta sur consentement avec réponses externes simulées.
+Voir `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. La vidéo du hero est dans `public/video/`. Le catalogue dérivé des 32 références est construit par `scripts/catalog.mjs` ; chaque fiche `produit-<id>.html` et le panier sont exportés statiquement. `public/cart-core.js` valide les sélections et calcule en centimes. `node scripts/check-commerce.cjs` vérifie les parcours, les gestes tactiles synthétisés et les lecteurs Meta automatiques avec réponses externes simulées.
 
-La vente reste désactivée : aucun endpoint de commande ou de paiement n’est créé, aucune donnée bancaire ou personnelle n’est collectée par le panier. Les lecteurs Instagram utilisent les trois publications et le compte `la_cuisine_de_dina` fournis par le client ; la réception réelle du contenu reste à vérifier sur un navigateur connecté aux plateformes. Les données juridiques sont dans `data/legal.json`, sans valeurs inventées pour les champs non confirmés.
+La vente reste désactivée : aucun endpoint de commande ou de paiement n’est créé, aucune donnée bancaire ou personnelle n’est collectée par le panier. Les lecteurs Instagram utilisent une publication de `cuisinededina` et trois de `la_cuisine_de_dina`, avec une story à la une proposée en lien direct ; la réception réelle du contenu reste à vérifier sur un navigateur connecté aux plateformes. Les données juridiques sont dans `data/legal.json`, sans valeurs inventées pour les champs non confirmés.
+
+## Réseaux automatiques et Maps
+
+Voir `docs/FEEDS-AUTOMATIQUES-MAPS.md`. Les deux comptes Instagram sont séparés dans `data/restaurant.json` (`instagramAccounts`). Les lecteurs sont rendus dans le HTML et ne dépendent pas d’un choix sauvegardé dans le navigateur. La carte est générée par `scripts/maps-render.mjs`, sans SDK de générateur. `node scripts/check-media-bento.cjs` vérifie les widgets et Maps aux cinq largeurs, avec et sans JavaScript, en simulant les réponses externes uniquement dans les tests.

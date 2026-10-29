@@ -18,7 +18,7 @@ Personnes cherchant un restaurant africain à Compiègne, un repas sur place, à
 
 Aucun témoignage, classement, distinction ou chiffre de conversion authentifié. Les prix sont indicatifs à confirmer. Horaires, téléphone, exploitant légal, compositions et allergènes nécessitent confirmation par le restaurant. Ne pas promettre halal, traiteur, privatisation, options végétariennes ou zone de livraison sans source confirmée.
 
-Les photos studio et le logo affichés sont des recréations IA à partir de références du client. Les lecteurs sociaux officiels sont préparés pour les comptes et trois publications fournis par le client, après consentement. Leur contenu réel reste soumis aux autorisations Meta et aux accès réseau ; aucun faux flux n’est utilisé. Le panier est une démonstration, sans paiement ni envoi de commande. Aucun outil publicitaire ou de mesure d’audience n’est activé par cette demande.
+Les photos studio et le logo affichés sont des recréations IA à partir de références du client. Les lecteurs sociaux officiels sont préparés pour les deux comptes et quatre publications fournis par le client, avec chargement automatique et une story à la une en lien direct. Leur contenu réel reste soumis aux autorisations Meta et aux accès réseau ; aucun faux flux n’est utilisé. Le panier est une démonstration, sans paiement ni envoi de commande. Aucun outil publicitaire ou de mesure d’audience n’est activé par cette demande.
 
 ## Charte et périmètre
 
@@ -33,3 +33,5 @@ Aucun résultat d’A/B test ou de campagne mesurée disponible. Les choix actue
 - 2026-10-29 : v1.0, contexte consolidé depuis les documents et le site pour éviter de redemander les informations connues.
 
 - 2026-10-29 : v1.1, ajout du parcours de démonstration et des vrais lecteurs Meta demandés, correction du compte Instagram vers la_cuisine_de_dina.
+
+- 2026-10-29 : `cuisinededina` confirmé comme compte principal ; conservation de `la_cuisine_de_dina`. Chargement automatique demandé des lecteurs et de Maps.

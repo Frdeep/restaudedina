@@ -42,7 +42,7 @@ test('aperçus sociaux liés aux vrais comptes sans charger les scripts Meta', a
   assert.ok(html.includes('https://www.instagram.com/la_cuisine_de_dina/'));
   assert.ok(html.includes('La-Cuisine-De-DINA-100060362415980'));
   assert.ok(!html.includes('/rees/'));
-  assert.ok(!html.includes('<iframe'));
+  assert.ok(html.includes('<iframe'));assert.ok(html.includes('https://www.instagram.com/cuisinededina/'));assert.ok(!html.includes('data-social-load'));
   assert.ok(!html.includes('connect.facebook.net'));
 });
 test('photos studio, logo, polices locales et scripts de mouvement accessibles', async () => {

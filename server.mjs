@@ -15,7 +15,7 @@ export function createServer() {
   return http.createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-    res.setHeader('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; frame-src https://www.facebook.com https://www.instagram.com; base-uri 'none'; frame-ancestors 'none'; form-action 'none'");
+    res.setHeader('Content-Security-Policy', "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; media-src 'self'; frame-src https://www.facebook.com https://www.instagram.com https://maps.google.com https://www.google.com; base-uri 'none'; frame-ancestors 'none'; form-action 'none'");
     const send = (status, type, body) => { res.writeHead(status, { 'Content-Type': type }); res.end(req.method === 'HEAD' ? undefined : body); };
     if (!['GET', 'HEAD'].includes(req.method)) { res.setHeader('Allow', 'GET, HEAD'); return send(405, 'text/plain; charset=utf-8', 'Méthode non autorisée'); }
     let pathname;

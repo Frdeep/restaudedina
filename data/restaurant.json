@@ -265,12 +265,35 @@
   ],
   "socials": {
     "facebook": "https://www.facebook.com/p/La-Cuisine-De-DINA-100060362415980/?locale=fr_FR",
-    "instagram": "https://www.instagram.com/la_cuisine_de_dina/",
-    "instagramHandle": "@la_cuisine_de_dina",
-    "instagramPosts": [
-      "https://www.instagram.com/reel/Cu_9HepI3N5/",
-      "https://www.instagram.com/p/Cuc2b7iIV3K/",
-      "https://www.instagram.com/reel/CuQHV9zodWB/"
+    "instagram": "https://www.instagram.com/cuisinededina/",
+    "instagramHandle": "@cuisinededina",
+    "instagramAccounts": [
+      {
+        "id": "cuisinededina",
+        "handle": "@cuisinededina",
+        "url": "https://www.instagram.com/cuisinededina/",
+        "primary": true,
+        "posts": [
+          "https://www.instagram.com/p/C4GlrBSofJx/"
+        ],
+        "highlights": [
+          {
+            "url": "https://www.instagram.com/stories/highlights/18057664687533926/",
+            "label": "À la une"
+          }
+        ]
+      },
+      {
+        "id": "la-cuisine-de-dina",
+        "handle": "@la_cuisine_de_dina",
+        "url": "https://www.instagram.com/la_cuisine_de_dina/",
+        "primary": false,
+        "posts": [
+          "https://www.instagram.com/reel/Cu_9HepI3N5/",
+          "https://www.instagram.com/p/Cuc2b7iIV3K/",
+          "https://www.instagram.com/reel/CuQHV9zodWB/"
+        ]
+      }
     ]
   },
   "sauces": [
