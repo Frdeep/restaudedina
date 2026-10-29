@@ -5,6 +5,16 @@ description: Accompagner la conception et le développement du projet restaudedi
 
 # Projet restaudedina
 
+## Améliorations de commande et vidéo
+
+La version actuelle ajoute vidéo locale avec son optionnel, aperçu des plats, fiches de produits et panier de démonstration. Lire `docs/AMELIORATIONS-V2.md` et `docs/VALIDATION-V2.md`. Le panier ne doit transmettre aucune commande ni demander de paiement tant que le système réel n’est pas connecté. Ne pas déclarer les mentions/CGV conformes ou définitives si des champs de `data/legal.json` manquent. Instagram : `la_cuisine_de_dina`, avec les trois publications fournies dans `data/restaurant.json`. Les lecteurs Meta sont chargés après choix explicite et restent soumis aux restrictions de la plateforme.
+
+## Workflow actuel prioritaire
+
+Le client demande désormais des améliorations ciblées du site existant, pas une nouvelle refonte. Avant chaque tâche, lire `AGENTS.md`, `DESIGN.md` et `.agents/skills/dina-workflow/SKILL.md`. Les 74 skills amont sont installés localement sous `.agents/skills/`, avec adaptation Codex et routage selon l’étape. Sources, versions et vérifications : `docs/SKILLS.md`, `.agents/skill-sources.json` et `.agents/skills-lock.json`.
+
+La charte et les dernières consignes du client priment sur les recommandations génériques des skills. Les sections de refonte ci-dessous décrivent l’historique et ne demandent pas de refaire le site à chaque intervention.
+
 ## Dépôt de référence
 
 - GitHub : https://github.com/Frdeep/restaudedina
@@ -31,7 +41,7 @@ Lorsque l’utilisateur demande cette étape, inspecter les fichiers du projet, 
 
 ## Refonte demandée après la première version
 
-Dernières instructions prioritaires : fond blanc, texte noir/cacao, jaune conservé, aucun vert ni bordeaux dans l’interface. Le domaine reste `https://restaudedina.vercel.app/`. Facebook : `https://www.facebook.com/p/La-Cuisine-De-DINA-100060362415980/?locale=fr_FR`. Instagram : `https://www.instagram.com/cuisinededina/` (le chemin `/rees/` fourni a été remplacé par le profil). Footer avec aperçus visuels liés aux comptes, sans faux posts ni statistiques.
+Dernières instructions prioritaires : fond blanc, texte noir/cacao, jaune conservé, aucun vert ni bordeaux dans l’interface. Le domaine reste `https://restaudedina.vercel.app/`. Facebook : `https://www.facebook.com/p/La-Cuisine-De-DINA-100060362415980/?locale=fr_FR`. Instagram : `https://www.instagram.com/la_cuisine_de_dina/` (le chemin `/rees/` fourni a été remplacé par le profil). Footer avec aperçus visuels liés aux comptes, sans faux posts ni statistiques.
 
 La refonte dispose de maquettes SVG éditables dans `design/`, créées avant le code et importables dans Figma ; aucun document Figma distant n’a été créé. Le modèle reste inaccessible lors des contrôles. Voir `docs/REFONTE.md` et `docs/VALIDATION-REFONTE.md`. Les huit visuels studio optimisés et la déclinaison marron/jaune du logo sont maintenant intégrés sous `public/media/`. Préserver leur statut de recréations IA et leurs originaux ; ne pas les présenter comme les fichiers photo bruts ou le logo original exact.
 

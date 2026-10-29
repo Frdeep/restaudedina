@@ -265,8 +265,13 @@
   ],
   "socials": {
     "facebook": "https://www.facebook.com/p/La-Cuisine-De-DINA-100060362415980/?locale=fr_FR",
-    "instagram": "https://www.instagram.com/cuisinededina/",
-    "instagramHandle": "@cuisinededina"
+    "instagram": "https://www.instagram.com/la_cuisine_de_dina/",
+    "instagramHandle": "@la_cuisine_de_dina",
+    "instagramPosts": [
+      "https://www.instagram.com/reel/Cu_9HepI3N5/",
+      "https://www.instagram.com/p/Cuc2b7iIV3K/",
+      "https://www.instagram.com/reel/CuQHV9zodWB/"
+    ]
   },
   "sauces": [
     "Oignons cuits",

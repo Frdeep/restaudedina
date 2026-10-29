@@ -4,10 +4,10 @@ const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 if (toggle && navigation) {
   toggle.hidden = false;
   const close = () => { toggle.setAttribute('aria-expanded','false'); navigation.classList.remove('open'); };
-  toggle.addEventListener('click', () => {
+  toggle.addEventListener('click', (event) => {
     const open = toggle.getAttribute('aria-expanded') !== 'true';
     toggle.setAttribute('aria-expanded',String(open)); navigation.classList.toggle('open',open);
-    if (open && window.gsap && !reduced.matches) window.gsap.fromTo(navigation.querySelectorAll('a'),{opacity:0,y:12},{opacity:1,y:0,duration:.4,stagger:.05,ease:'power2.out',clearProps:'all'});
+    if (open && event.detail>0 && window.gsap && !reduced.matches) window.gsap.fromTo(navigation.querySelectorAll('a'),{opacity:0,y:12},{opacity:1,y:0,duration:.18,stagger:.035,ease:'power2.out',clearProps:'all'});
   });
   navigation.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true'){close();toggle.focus();}});
@@ -29,17 +29,14 @@ if(filters){
 }
 const print=document.querySelector('#print-card');
 if(print){print.hidden=false;print.addEventListener('click',()=>window.print());}
-if(window.gsap&&window.ScrollTrigger&&!document.body.classList.contains('card-page')){
+if(window.gsap&&window.ScrollTrigger&&document.querySelector('.hero-feature')){
   const gsap=window.gsap;gsap.registerPlugin(window.ScrollTrigger);
   const media=gsap.matchMedia();
   media.add('(prefers-reduced-motion: no-preference)',()=>{
-    gsap.from('.hero h1 > span',{y:24,opacity:0,duration:.85,stagger:.1,ease:'power3.out',clearProps:'all'});
-    document.querySelectorAll('.reveal').forEach(el=>gsap.from(el,{y:25,opacity:.25,duration:.8,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 94%',once:true},clearProps:'all'}));
-    document.querySelectorAll('.specialty .image-shell,.house-photo,.sharing-photo').forEach(el=>gsap.fromTo(el,{scale:.96},{scale:1,ease:'none',scrollTrigger:{trigger:el,start:'top 95%',end:'top 40%',scrub:.6}}));
-    const statement=document.querySelector('.house-statement');
-    if(statement){
-      const words=statement.textContent.split(' ');statement.replaceChildren(...words.flatMap((word,i)=>{const span=document.createElement('span');span.textContent=word;return i?[document.createTextNode(' '),span]:[span];}));
-      gsap.fromTo(statement.children,{opacity:.3},{opacity:1,stagger:.12,ease:'none',scrollTrigger:{trigger:statement,start:'top 90%',end:'top 55%',scrub:.5}});
-    }
+    const intro=gsap.timeline({defaults:{ease:'power3.out',duration:.6}});
+    intro.from('.hero h1 > span',{y:22,opacity:.35,stagger:.06,clearProps:'all'})
+      .from('.hero-tagline',{y:10,opacity:.3,clearProps:'all'},.15)
+      .from('.hero-film',{y:18,scale:.97,opacity:.4,clearProps:'all'},.12);
+    gsap.fromTo('.hero-photo',{scale:.98},{scale:1,ease:'none',scrollTrigger:{trigger:'.hero-photo',start:'top 95%',end:'top 55%',scrub:.5},clearProps:'transform'});
   });
 }

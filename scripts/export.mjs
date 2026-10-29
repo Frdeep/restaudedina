@@ -1,3 +1,5 @@
+import {buildCatalog,catalogScript} from './catalog.mjs';
+import {renderProduct,renderCart,renderLegal} from './shop-render.mjs';
 import { mkdir, readFile, writeFile, cp } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,3 +14,8 @@ await writeFile(path.join(out, 'carte.html'), renderCard(d));
 console.log('Export statique : artifacts/site (ouvrir index.html, aucune installation).');
 
 await writeFile(path.join(out, 'informations.html'), renderInfo(d));
+
+await writeFile(path.join(out,'catalog.js'),catalogScript(d));
+await writeFile(path.join(out,'panier.html'),renderCart(d));
+for (const p of buildCatalog(d).products) await writeFile(path.join(out,`produit-${p.id}.html`),renderProduct(d,p.id));
+for (const kind of ['mentions','cgu','cgv','confidentialite']) await writeFile(path.join(out,`${kind}.html`),renderLegal(d,kind));

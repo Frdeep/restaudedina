@@ -1,0 +1,145 @@
+{
+  "format": 1,
+  "sources": [
+    {
+      "key": "anthropic",
+      "repository": "https://github.com/anthropics/skills",
+      "commit": "ca45fc496a3436251f191354091d557da31c15b5",
+      "skills": [
+        "skills/frontend-design",
+        "skills/webapp-testing"
+      ],
+      "licenses": []
+    },
+    {
+      "key": "uiux",
+      "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "commit": "28b3b8dee8c976df4fa3e94aed4e092ad43fcb03",
+      "skills": [
+        ".claude/skills/ui-ux-pro-max"
+      ],
+      "licenses": [
+        "LICENSE"
+      ]
+    },
+    {
+      "key": "impeccable",
+      "repository": "https://github.com/pbakaus/impeccable",
+      "commit": "5e745ace7e151feb2a93d360d0281fe39448b857",
+      "skills": [
+        ".agents/skills/impeccable"
+      ],
+      "licenses": [
+        "LICENSE"
+      ]
+    },
+    {
+      "key": "emil",
+      "repository": "https://github.com/emilkowalski/skills",
+      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "skills": [
+        "skills/animate",
+        "skills/animate-expo",
+        "skills/animation-performance",
+        "skills/animation-vocabulary",
+        "skills/apple-design",
+        "skills/ask-sonner",
+        "skills/break-ui",
+        "skills/emil-design-eng",
+        "skills/find-animation-opportunities",
+        "skills/improve-animations",
+        "skills/mobile-native",
+        "skills/pick-ui-library",
+        "skills/prototype",
+        "skills/remove-animations",
+        "skills/review-animations",
+        "skills/write-swift"
+      ],
+      "licenses": [
+        "LICENSE"
+      ]
+    },
+    {
+      "key": "ibelick",
+      "repository": "https://github.com/ibelick/ui-skills",
+      "commit": "59193a75432e5f41c6980f53b9e6a7bd56919947",
+      "skills": [
+        "skills/create-design-md"
+      ],
+      "licenses": [
+        "LICENSE"
+      ]
+    },
+    {
+      "key": "vercel",
+      "repository": "https://github.com/vercel-labs/agent-skills",
+      "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "skills": [
+        "skills/web-design-guidelines"
+      ],
+      "licenses": []
+    },
+    {
+      "key": "marketing",
+      "repository": "https://github.com/coreyhaines31/marketingskills",
+      "commit": "0cd9b3a0ef4c411a1d690419ce843f2a1da32cce",
+      "skills": [
+        "skills/ab-testing",
+        "skills/ad-creative",
+        "skills/ads",
+        "skills/ai-seo",
+        "skills/analytics",
+        "skills/aso",
+        "skills/attribution",
+        "skills/churn-prevention",
+        "skills/co-marketing",
+        "skills/cold-email",
+        "skills/community-marketing",
+        "skills/competitor-profiling",
+        "skills/competitors",
+        "skills/content-strategy",
+        "skills/conversion-tracking",
+        "skills/copy-editing",
+        "skills/copywriting",
+        "skills/cro",
+        "skills/customer-research",
+        "skills/directory-submissions",
+        "skills/emails",
+        "skills/events",
+        "skills/free-tools",
+        "skills/image",
+        "skills/influencer-marketing",
+        "skills/launch",
+        "skills/lead-magnets",
+        "skills/link-building",
+        "skills/marketing-council",
+        "skills/marketing-ideas",
+        "skills/marketing-loops",
+        "skills/marketing-plan",
+        "skills/marketing-psychology",
+        "skills/offers",
+        "skills/onboarding",
+        "skills/paywalls",
+        "skills/popups",
+        "skills/pricing",
+        "skills/product-marketing",
+        "skills/programmatic-seo",
+        "skills/prospecting",
+        "skills/public-relations",
+        "skills/referrals",
+        "skills/revops",
+        "skills/sales-enablement",
+        "skills/schema",
+        "skills/seo-audit",
+        "skills/signup",
+        "skills/site-architecture",
+        "skills/sms",
+        "skills/social",
+        "skills/video"
+      ],
+      "licenses": [
+        "LICENSE"
+      ]
+    }
+  ]
+}

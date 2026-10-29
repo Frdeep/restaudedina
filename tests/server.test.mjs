@@ -39,7 +39,7 @@ test('CSS, JS et icône accessibles et HEAD sans corps', async () => {
 });
 test('aperçus sociaux liés aux vrais comptes sans charger les scripts Meta', async () => {
   const html = await (await fetch(base)).text();
-  assert.ok(html.includes('https://www.instagram.com/cuisinededina/'));
+  assert.ok(html.includes('https://www.instagram.com/la_cuisine_de_dina/'));
   assert.ok(html.includes('La-Cuisine-De-DINA-100060362415980'));
   assert.ok(!html.includes('/rees/'));
   assert.ok(!html.includes('<iframe'));

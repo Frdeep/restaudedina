@@ -41,7 +41,7 @@ const fs = require('node:fs/promises');
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.waitForTimeout(100);
   assert.equal(await page.evaluate(()=>window.ScrollTrigger.getAll().length),0);
-  assert.equal(await page.locator('.social-card').first().getAttribute('href'),'https://www.instagram.com/cuisinededina/');
+  assert.equal(await page.locator('.social-card').first().locator('.social-embed-actions a').getAttribute('href'),'https://www.instagram.com/la_cuisine_de_dina/');
   await page.goto('http://127.0.0.1:3000/carte.html',{waitUntil:'networkidle'});
   await page.emulateMedia({media:'print'});
   const sheets = await page.locator('.menu-sheet').evaluateAll(nodes => nodes.map(n => ({height:n.clientHeight,content:n.scrollHeight})));
@@ -51,7 +51,7 @@ const fs = require('node:fs/promises');
   await page.emulateMedia({media:'screen'});
   const exported = http.createServer(async (req,res) => {
     const file = decodeURIComponent(req.url.split('?')[0]).replace(/^\//,'') || 'index.html';
-    try { const body = await fs.readFile(path.resolve('artifacts/site',file)); res.setHeader('Content-Type', file.endsWith('.css')?'text/css':file.endsWith('.js')?'text/javascript':file.endsWith('.svg')?'image/svg+xml':file.endsWith('.webp')?'image/webp':file.endsWith('.ttf')?'font/ttf':'text/html'); res.end(body); }
+    try { const body = await fs.readFile(path.resolve('artifacts/site',file)); res.setHeader('Content-Type', file.endsWith('.css')?'text/css':file.endsWith('.js')?'text/javascript':file.endsWith('.svg')?'image/svg+xml':file.endsWith('.webp')?'image/webp':file.endsWith('.ttf')?'font/ttf':file.endsWith('.mp4')?'video/mp4':file.endsWith('.jpg')?'image/jpeg':file.endsWith('.pdf')?'application/pdf':'text/html'); res.end(body); }
     catch {res.writeHead(404);res.end();}
   });
   await new Promise(resolve=>exported.listen(0,'127.0.0.1',resolve));

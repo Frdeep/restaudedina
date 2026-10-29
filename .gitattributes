@@ -1,0 +1,3 @@
+# Preserve vendored bytes so the pinned skill hashes remain portable.
+.agents/skills/** -text
+.agents/marketing-tools/** -text
