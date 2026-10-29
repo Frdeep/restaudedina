@@ -2,6 +2,14 @@
 
 Site vitrine fullstack, Node.js >=22, sans dépendances externes. Voir [SKILL.md](SKILL.md), [brief](BRIEF.md), [plan](docs/PLAN.md) et [analyse des photos](docs/IMAGES.md).
 
+## Refonte actuelle
+
+Workflow et limites : [REFONTE.md](docs/REFONTE.md). Résultats : [VALIDATION-REFONTE.md](docs/VALIDATION-REFONTE.md). Maquettes ordinateur/mobile importables dans Figma : dossier `design/`. Charte blanche, noire, cacao et jaune ; logo adapté et huit rendus studio dans `public/media/`. Aperçus Facebook/Instagram locaux sans scripts de suivi. Carte de 32 références et PDF téléchargeable inclus.
+
+`npm run build` produit l’export Vercel. `scripts/check-browser.cjs` utilise les outils Playwright/Chromium préinstallés dans cet environnement de développement. `scripts/prepare-media.cjs` est un outil de préparation utilisant Sharp et les originaux locaux ; il n’est pas exécuté au build Vercel. Les médias optimisés, polices et scripts vendor sont committés pour un build reproductible sans ces outils.
+
+Pour rafraîchir la carte PDF après une modification des prix, lancer le serveur puis `node scripts/check-browser.cjs`, copier `artifacts/carte-dina-recto-verso.pdf` vers `public/carte-dina-recto-verso.pdf` et relancer le build. Le test de cohérence PDF dans le parcours final contrôle que les libellés et tarifs du téléchargement correspondent aux données.
+
 ## Démarrer
 Depuis `/workspace/restaudedina`, exécuter `npm start` (ou `node server.mjs`). Le serveur écoute le port 3000, configurable avec `PORT`. Ne pas créer de worktree : ce checkout est déjà isolé.
 

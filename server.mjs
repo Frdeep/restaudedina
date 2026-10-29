@@ -2,11 +2,11 @@ import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { renderHome, renderCard } from './scripts/render.mjs';
+import { renderHome, renderCard, renderInfo } from './scripts/render.mjs';
 
 export const root = path.dirname(fileURLToPath(import.meta.url));
 export const restaurant = JSON.parse(await readFile(path.join(root, 'data/restaurant.json'), 'utf8'));
-const mime = { '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.pdf': 'application/pdf' };
+const mime = { '.ttf': 'font/ttf', '.txt': 'text/plain; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.pdf': 'application/pdf' };
 
 export function createServer() {
   return http.createServer(async (req, res) => {
@@ -25,7 +25,9 @@ export function createServer() {
       return send(200, 'application/json; charset=utf-8', JSON.stringify(info));
     }
     if (pathname === '/' || pathname === '/index.html') return send(200, 'text/html; charset=utf-8', renderHome(restaurant));
-    if (['/carte', '/carte/', '/carte.html'].includes(pathname)) return send(200, 'text/html; charset=utf-8', renderCard(restaurant));
+    if (pathname === '/carte/') { res.writeHead(302, { Location: '/carte.html' }); return res.end(); }
+    if (pathname === '/informations.html') return send(200, 'text/html; charset=utf-8', renderInfo(restaurant));
+    if (['/carte', '/carte.html'].includes(pathname)) return send(200, 'text/html; charset=utf-8', renderCard(restaurant));
     const publicDir = path.join(root, 'public');
     const target = path.resolve(publicDir, '.' + pathname);
     if (!target.startsWith(publicDir + path.sep) || pathname.includes('\0')) return send(404, 'text/plain', 'Page introuvable');
