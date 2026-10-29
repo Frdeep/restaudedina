@@ -1,7 +1,7 @@
 import {legalDialogs,legalLinks} from './legal.mjs';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const cartIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 11h11.6L21 7H6M9 20h.1M18 20h.1"/></svg>';
-export function cartLink(){return `<a class="cart-link" href="./panier.html" data-open-cart aria-label="Ouvrir le panier">${cartIcon}<span>Panier</span><span class="cart-count" data-cart-count>0</span></a>`;}
+export function cartLink(){return `<a class="cart-link" href="./panier.html" data-open-cart aria-haspopup="dialog" aria-controls="cart-dialog" aria-label="Ouvrir le panier">${cartIcon}<span>Panier</span><span class="cart-count" data-cart-count>0</span></a>`;}
 export function productVisual(p,cls=''){
  const cropped=p.media.crop!=='none';
  return `<div class="product-visual ${cropped?'is-crop crop-'+esc(p.media.crop):''} ${cls}"><img src="./media/${esc(p.media.file)}-960.webp" srcset="./media/${esc(p.media.file)}-480.webp 480w, ./media/${esc(p.media.file)}-960.webp 960w, ./media/${esc(p.media.file)}-1440.webp 1440w" sizes="${cropped?'(max-width:760px) 255vw, 120vw':'(max-width:760px) 85vw, 40vw'}" width="960" height="${p.media.file==='six-assiettes'?768:960}" alt="${esc(p.media.label)}" loading="lazy" decoding="async"></div>`;

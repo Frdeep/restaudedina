@@ -42,7 +42,7 @@ input,select,textarea{font:500 1rem/1.4 var(--body);color:var(--black);accent-co
 .site-dialog::backdrop{background:#201b1873}.dialog-top{display:flex;justify-content:space-between;align-items:start;gap:1rem;margin-bottom:1.25rem}
 .dialog-top h2{font-size:clamp(1.3rem,3vw,2rem);line-height:1.25;letter-spacing:-.025em;overflow-wrap:anywhere}
 html:has(.site-dialog[open]){overflow:hidden}
-.legal-body{font-size:1rem;line-height:1.65;font-weight:450;overflow-wrap:anywhere}.legal-body p,.legal-body ul{margin-bottom:1rem}.legal-body h3{font:650 1.15rem/1.35 var(--body);color:var(--brown);margin:1.75rem 0 .75rem}.legal-body a{text-decoration:underline;text-underline-offset:.2em}
+.legal-body{font-size:1rem;line-height:1.65;font-weight:450;overflow-wrap:anywhere}.legal-body p,.legal-body ul{margin-bottom:1rem}.legal-body h2,.legal-body h3{font:650 1.15rem/1.35 var(--body);color:var(--brown);margin:1.75rem 0 .75rem}.legal-body a{text-decoration:underline;text-underline-offset:.2em}
 .legal-status,.demo-note{font-size:.9rem;line-height:1.5;background:#f4cb3926;border:1px solid #48291d22;color:var(--brown);border-radius:12px;padding:1rem;font-weight:550;margin:1rem 0;max-width:none}
 .legal-page{max-width:1050px}.legal-page h1{font-size:clamp(2rem,5vw,4rem);margin-bottom:2rem}.legal-body li{margin-bottom:.7rem}
 .footer-links{display:grid;grid-template-columns:1fr 1fr;column-gap:1.5rem;row-gap:.7rem}.footer-links>span{grid-column:1/-1}
